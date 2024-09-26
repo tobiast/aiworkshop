@@ -68,15 +68,4 @@ public class MotorcyclesController {
         }
     }
 
-    @GetMapping("/{id}/maintenance-cost")
-    public ResponseEntity<?> getTotalMaintenanceCost(@PathVariable Long id) {
-        logger.info("Fetching total maintenance cost for motorcycle with id: {}", id);
-        Optional<Motorcycle> motorcycle = motorcycleRepository.findById(id);
-        if (motorcycle.isPresent()) {
-            double totalCost = motorcycle.get().getTotalMaintenanceCost();
-            return ResponseEntity.ok(totalCost);
-        } else {
-            return ResponseEntity.status(404).body("Motorcycle with id " + id + " not found");
-        }
-    }
 }
