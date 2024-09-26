@@ -75,6 +75,12 @@ public class Motorcycle {
         this.year = year;
     }
 
+    public double getTotalMaintenanceCost() {
+        return maintenances.stream()
+                .mapToDouble(Maintenance::getCost)
+                .sum();
+    }
+
     @Override
     public String toString() {
         return "Motorcycle{" +
@@ -83,6 +89,7 @@ public class Motorcycle {
                 ", brand='" + brand + '\'' +
                 ", year=" + year +
                 ", maintenances=" + maintenances +
+                ", totalMaintenanceCost=" + getTotalMaintenanceCost() +
                 '}';
     }
 }
