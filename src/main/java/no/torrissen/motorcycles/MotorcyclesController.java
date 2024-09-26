@@ -1,5 +1,6 @@
 package no.torrissen.motorcycles;
 
+import no.torrissen.motorcycles.model.Motorcycle;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
