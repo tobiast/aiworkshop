@@ -1,9 +1,8 @@
 package no.torrissen.motorcycles.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Motorcycle {
@@ -15,6 +14,10 @@ public class Motorcycle {
     private String brand;
     private int year;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "motorcycle_id")
+    private List<Service> services = new ArrayList<>();
+
     public Motorcycle() {
     }
 
@@ -22,6 +25,22 @@ public class Motorcycle {
         this.model = model;
         this.brand = brand;
         this.year = year;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public void addService(Service service) {
+        this.services.add(service);
+    }
+
+    public void removeService(Service service) {
+        this.services.remove(service);
     }
 
     public Long getId() {
@@ -63,6 +82,7 @@ public class Motorcycle {
                 ", model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", year=" + year +
+                ", services=" + services +
                 '}';
     }
 }

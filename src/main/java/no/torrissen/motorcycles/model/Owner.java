@@ -66,7 +66,7 @@ public class Owner {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", motorcycles=" + motorcycles +
+                ", motorcycles=" + motorcycles.size() +
                 '}';
     }
 }
