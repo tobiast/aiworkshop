@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Service {
+public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,10 +16,10 @@ public class Service {
     private LocalDate date;
     private double cost;
 
-    public Service() {
+    public Maintenance() {
     }
 
-    public Service(String title, LocalDate date, double cost) {
+    public Maintenance(String title, LocalDate date, double cost) {
         this.title = title;
         this.date = date;
         this.cost = cost;
@@ -59,7 +59,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" +
+        return "Maintenance{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", date=" + date +

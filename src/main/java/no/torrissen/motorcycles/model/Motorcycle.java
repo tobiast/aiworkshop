@@ -16,7 +16,7 @@ public class Motorcycle {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "motorcycle_id")
-    private List<Service> services = new ArrayList<>();
+    private List<Maintenance> maintenances = new ArrayList<>();
 
     public Motorcycle() {
     }
@@ -27,20 +27,20 @@ public class Motorcycle {
         this.year = year;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Maintenance> getMaintenances() {
+        return maintenances;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setMaintenances(List<Maintenance> maintenances) {
+        this.maintenances = maintenances;
     }
 
-    public void addService(Service service) {
-        this.services.add(service);
+    public void addMaintenance(Maintenance maintenance) {
+        this.maintenances.add(maintenance);
     }
 
-    public void removeService(Service service) {
-        this.services.remove(service);
+    public void removeMaintenance(Maintenance maintenance) {
+        this.maintenances.remove(maintenance);
     }
 
     public Long getId() {
@@ -82,7 +82,7 @@ public class Motorcycle {
                 ", model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", year=" + year +
-                ", services=" + services +
+                ", maintenances=" + maintenances +
                 '}';
     }
 }
