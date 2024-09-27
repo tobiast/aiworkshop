@@ -21,9 +21,10 @@ public class MotorcyclesController {
     private MotorcycleRepository motorcycleRepository;
 
     @GetMapping
-    public List<Motorcycle> getAllMotorcycles() {
+    public ResponseEntity<List<Motorcycle>> getAllMotorcycles() {
         logger.info("Fetching all motorcycles");
-        return motorcycleRepository.findAll();
+        List<Motorcycle> motorcycles = motorcycleRepository.findAll();
+        return ResponseEntity.ok(motorcycles);
     }
 
     @GetMapping("/{id}")

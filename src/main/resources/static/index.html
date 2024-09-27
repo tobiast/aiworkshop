@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle List</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Motorcycle List</h1>
+    <ul id="motorcycleList"></ul>
+
+    <script>
+        axios.get('/motorcycles')
+            .then(function (response) {
+                const motorcycleList = document.getElementById('motorcycleList');
+                response.data.forEach(function(motorcycle) {
+                    const li = document.createElement('li');
+                    li.textContent = `${motorcycle.brand} ${motorcycle.model} (${motorcycle.year})`;
+                    motorcycleList.appendChild(li);
+                });
+            })
+            .catch(function (error) {
+                console.error('Error fetching motorcycles:', error);
+            });
+    </script>
+</body>
+</html>
