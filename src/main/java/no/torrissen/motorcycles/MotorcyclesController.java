@@ -1,6 +1,7 @@
 package no.torrissen.motorcycles;
 
 import no.torrissen.motorcycles.model.Motorcycle;
+import no.torrissen.motorcycles.repository.MotorcycleRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,12 @@ import java.util.List;
 public class MotorcyclesController {
 
     private static final Logger logger = LogManager.getLogger(MotorcyclesController.class);
+
+    private final MotorcycleRepository motorcycleRepository;
+
+    public MotorcyclesController(MotorcycleRepository motorcycleRepository) {
+        this.motorcycleRepository = motorcycleRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Motorcycle>> getAllMotorcycles() {
@@ -32,5 +39,12 @@ public class MotorcyclesController {
         Motorcycle motorcycle = new Motorcycle("Ninja", "Kawasaki", 2021);
         logger.debug("Motorcycle found: {}", motorcycle);
         return ResponseEntity.ok(motorcycle);
+    }
+    @PostMapping
+    public ResponseEntity<Motorcycle> createMotorcycle(@RequestBody Motorcycle motorcycle) {
+        logger.info("Creating new motorcycle: {}", motorcycle);
+        Motorcycle savedMotorcycle = motorcycleRepository.save(motorcycle);
+        logger.debug("Motorcycle saved: {}", savedMotorcycle);
+        return ResponseEntity.ok(savedMotorcycle);
     }
 }
