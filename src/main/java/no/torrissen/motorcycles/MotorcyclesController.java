@@ -25,10 +25,7 @@ public class MotorcyclesController {
     public ResponseEntity<List<Motorcycle>> getAllMotorcycles() {
 
         logger.info("Fetching all motorcycles");
-        List<Motorcycle> motorcycles = List.of(
-                new Motorcycle("Ninja", "Kawasaki", 2021),
-                new Motorcycle("CBR", "Honda", 2021)
-        );
+        List<Motorcycle> motorcycles = motorcycleRepository.findAll();
         logger.debug("Motorcycles found: {}", motorcycles);
         return ResponseEntity.ok(motorcycles);
     }
@@ -36,9 +33,15 @@ public class MotorcyclesController {
     @GetMapping("/{id}")
     public ResponseEntity<Motorcycle> getMotorcycleById(@PathVariable Long id) {
         logger.info("Fetching motorcycle with ID: {}", id);
-        Motorcycle motorcycle = new Motorcycle("Ninja", "Kawasaki", 2021);
-        logger.debug("Motorcycle found: {}", motorcycle);
-        return ResponseEntity.ok(motorcycle);
+        return motorcycleRepository.findById(id)
+                .map(motorcycle -> {
+                    logger.debug("Motorcycle found: {}", motorcycle);
+                    return ResponseEntity.ok(motorcycle);
+                })
+                .orElseGet(() -> {
+                    logger.warn("Motorcycle with ID: {} not found", id);
+                    return ResponseEntity.notFound().build();
+                });
     }
     @PostMapping
     public ResponseEntity<Motorcycle> createMotorcycle(@RequestBody Motorcycle motorcycle) {
