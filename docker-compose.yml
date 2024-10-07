@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:latest
+    image: postgres:13
     container_name: motorcyclesdb
     environment:
       POSTGRES_DB: motorcyclesdb
-      POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
