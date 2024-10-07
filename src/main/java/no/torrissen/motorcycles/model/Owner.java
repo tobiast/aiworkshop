@@ -1,13 +1,20 @@
 package no.torrissen.motorcycles.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Owner {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
-    private List<Motorcycle> motorcycles;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Motorcycle> motorcycles = new ArrayList<>();
 
     public Owner() {
         this.motorcycles = new ArrayList<>();
