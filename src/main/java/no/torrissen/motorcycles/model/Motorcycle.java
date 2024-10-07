@@ -1,15 +1,7 @@
 package no.torrissen.motorcycles.model;
 
-import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
 public class Motorcycle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String model;
     private String brand;
     private int year;
@@ -21,14 +13,6 @@ public class Motorcycle {
         this.model = model;
         this.brand = brand;
         this.year = year;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getModel() {
@@ -58,7 +42,6 @@ public class Motorcycle {
     @Override
     public String toString() {
         return "Motorcycle{" +
-                "id=" + id +
                 ", model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", year=" + year +
