@@ -14,10 +14,6 @@ public class Motorcycle {
     private String brand;
     private int year;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "motorcycle_id")
-    private List<Maintenance> maintenances = new ArrayList<>();
-
     public Motorcycle() {
     }
 
@@ -25,22 +21,6 @@ public class Motorcycle {
         this.model = model;
         this.brand = brand;
         this.year = year;
-    }
-
-    public List<Maintenance> getMaintenances() {
-        return maintenances;
-    }
-
-    public void setMaintenances(List<Maintenance> maintenances) {
-        this.maintenances = maintenances;
-    }
-
-    public void addMaintenance(Maintenance maintenance) {
-        this.maintenances.add(maintenance);
-    }
-
-    public void removeMaintenance(Maintenance maintenance) {
-        this.maintenances.remove(maintenance);
     }
 
     public Long getId() {
@@ -75,12 +55,6 @@ public class Motorcycle {
         this.year = year;
     }
 
-    public double getTotalMaintenanceCost() {
-        return maintenances.stream()
-                .mapToDouble(Maintenance::getCost)
-                .sum();
-    }
-
     @Override
     public String toString() {
         return "Motorcycle{" +
@@ -88,8 +62,6 @@ public class Motorcycle {
                 ", model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", year=" + year +
-                ", maintenances=" + maintenances +
-                ", totalMaintenanceCost=" + getTotalMaintenanceCost() +
                 '}';
     }
 }
