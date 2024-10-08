@@ -3,15 +3,18 @@
 - Loganalyse 
 - Endring av kode med [aider](https://aider.chat/)
 
+# om modellene 
+Du kan både bruke både GPT-modeller og Anthropic-modeller i dette forsøket (aider kan bruke begge). Uansett må du ha en konto, API-ey og muligens også 
+
+
 # Anthropic
-Jeg liker å bruke Anthropic. De leverer modeller som Claude, Sonnet osv. Også har de en bra workbench:  [Consolle](https://console.anthropic.com/workbench/aa1b84c8-8d08-4e11-a419-70841e368e98) 
+Jeg liker å bruke Anthropic. De leverer modeller som Claude, Sonnet osv. Også har de en bra workbench:  [Consolle](https://console.anthropic.com/workbench/) 
 
 ## testdata-case 
 
 Bruker Antropic til å generere testdata. 
 
 Machine prompt:
-
     I will give you an id of a kindergarden and a comma-separayed list of departments, like this: 
 
     [kidergarden]: [department], [department], [...],  [department]
@@ -47,6 +50,8 @@ Pre-req: Jeg bruker pyton virtual environment
     source path/to/venv/bin/activate 
     python3 -m pip install anthropic
 
+For å bruke anthropic fra kommandolinje må du ha en API-key, som du henter ut fra [Consolle](https://console.anthropic.com/workbench/) 
+
 ### Usecase 
 For en kunde lurte vi på  hvor mye av tiden som ble brukt til maintenance, feilretting og nye features. Tenkte at commit-loggen kunne gi en indikasjon:
 
@@ -55,7 +60,7 @@ For å henter ut commitloggen for et prosjekt på et greit format for videre pro
    `git log --pretty=format:'%h : %s : %ae`
 
 
-Kjør antrhopic consolle med eksempel: 
+Kjør antrhopic consolle med følgende eksempel: 
 Systemprompt: 
 
     Jeg sender deg en commit-melding på følgende format: 
@@ -66,14 +71,13 @@ Systemprompt:
 
 Userprompt: 
 
-`8e2f0c5d : Endrer litt på grensesnittet for informasjonskrav slik at disse kan avgjøre om de er relevante for den gitte behandling Marius Glittum`
+`8e2f0c5d : Endrer litt på grensesnittet for informasjonskrav slik at disse kan avgjøre om de er relevante for den gitte behandling : Tobias Torrissen`
 
-Vis kode og forklar. 
+Vis kode og forklar.  Kopier ut i en Pythonfil og kjør den i consolle. 
 
-Kjør ut alle til en fil: 
+Kjør ut alle logentries til en fil: 
 
     `git log --pretty=format:'%h : %s : %ae' > commitlog.txt
-
 
 Ta opp anthropic consolle slik at du kan endre koden fra sist program: 
 
@@ -108,15 +112,14 @@ Ta opp anthropic consolle slik at du kan endre koden fra sist program:
         ]
     )
     print(message.content)
-    
+
+
+Koden kan så tas ut i en pythonfil i samme directory som log-eksporten og kjøres. Det er lurt å ta bort mange entries, ellers tar det tid. 
     
 # Aider 
-Fordelen med denne vs "vanlige" kodegeneratorer er at den kan jobbe på flere filer, og også funker med som en parprogrammeringsassistent. 
+Fordelen med denne vs "vanlige" kodegeneratorer er at den kan jobbe på flere filer samtidig. Dermed funker den nesten som som en "parprogrammeringsassistent"
 
-Demo-applikasjon er på: 
-`/Users/tobiast/Development/ai_demo/simple_app`
-
-Husk å sette anthropic key:
+Før du fyrer opp aider må du huske på å å sette anthropic key:
 `export ANTHROPIC_API_KEY=[API-key som du finner i anthropic consolle]`
 `export OPENAI_API_KEY=[API-key som du finner i OpenAI consolle]`
 
