@@ -4,8 +4,7 @@
 - Endring av kode med [aider](https://aider.chat/)
 
 # om modellene 
-Du kan både bruke både GPT-modeller og Anthropic-modeller i dette forsøket (aider kan bruke begge). Uansett må du ha en konto, API-ey og muligens også 
-
+Du kan både bruke både GPT-modeller og Anthropic-modeller i dette forsøket (aider kan bruke begge). Uansett må du ha en konto, API-Key og muligens også putte på litt penger. Men det koster ikke stort.
 
 # Anthropic
 Jeg liker å bruke Anthropic. De leverer modeller som Claude, Sonnet osv. Også har de en bra workbench:  [Consolle](https://console.anthropic.com/workbench/) 
